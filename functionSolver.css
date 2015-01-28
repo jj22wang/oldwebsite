@@ -1,0 +1,15 @@
+<style type="text/css">
+  .inner { text-align: center;}
+  input{ font-family: serif; color: #878787; background-color: #F4F4F4}
+  input[type='button']{
+  	color:#198D8D;
+	padding:5px;
+	background-color: #F4F4F4;
+	border: 5px solid #F4F4F4;
+	text-decoration:none;
+  }
+  input[type="button"]:hover{
+	border: 5px solid #FEFEFE;
+  }
+</style>
+
