@@ -1,5 +1,9 @@
 <style type="text/css">
   .inner { text-align: center;}
+  #equation{
+    text-align: center;
+    color: #878787
+  }
   input{ font-family: serif; color: #878787; background-color: #F4F4F4}
   input[type='button']{
   	color:#198D8D;

@@ -87,9 +87,9 @@ function print(a)
 
 function polyPrint(p)
 {
-	if (p.length == 0)
-		return;
-	alert(print(p));
+	p = print(p);
+	p = "f(x) = " + p;
+    document.getElementById("equation").innerHTML= p;
 }
 
 function graph()
