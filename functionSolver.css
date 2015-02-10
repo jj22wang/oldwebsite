@@ -1,5 +1,20 @@
 <style type="text/css">
   .inner { text-align: center;}
+  .textinput{ 
+    padding-left: 5px;
+    padding-right: 15px;
+  }
+  .bounds{
+    padding-left: 5px;
+    padding-right: 15px;
+    width : 100px;
+  }
+  .layers{
+    position: absolute; 
+    border : 1px solid #000000;
+    left: 15%; 
+    top: 0;
+  }
   #equation{
     text-align: center;
     color: #878787

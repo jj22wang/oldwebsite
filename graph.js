@@ -3,6 +3,30 @@ function calculate()
 
 }
 
+function draw(ctx, xfrom, yfrom, xto, yto)
+{
+	ctx.beginPath();
+	ctx.moveTo(xfrom, yfrom);
+	ctx.lineTo(xto,yto);
+	ctx.strokeStyle= 'black';
+	ctx.stroke();	
+}
+
+function draw(ctx, xfrom, yfrom, xto, yto, strokeColor)
+{
+	ctx.beginPath();
+	ctx.moveTo(xfrom, yfrom);
+	ctx.lineTo(xto,yto);
+	ctx.strokeStyle= strokeColor;
+	ctx.stroke();	
+}
+
+function drawGrid(c)
+{
+	ctx = c.getContext('2d');
+	draw(ctx, c.width*.5, 0, c.width*.5, c.height, 'blue');
+	draw(ctx, 0, c.height*.5, c.width, c.height*.5, 'blue');
+}
 
 function polyDegree(p)
 {
@@ -97,5 +121,20 @@ function graph()
 	var func = document.getElementById('inputFunction').value;
 	var simplifiedFunction = simplify(func);
 	polyPrint(simplifiedFunction);
+	var canvas = document.getElementById("canvas");
+	while (canvas.firstChild) 
+	{
+   		canvas.removeChild(canvas.firstChild);
+	}	
+	for(var i = 0; i<3; i++)
+	{
+		var layer = document.createElement('canvas');
+		layer.className = 'layers';
+		layer.height = window.innerHeight*.7;
+		layer.width = window.innerWidth*.7;
+		canvas.appendChild(layer);
+	}
+	var layers = document.getElementsByClassName("layers");
+	drawGrid(layers[0]);
 	return;
 }

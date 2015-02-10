@@ -17,8 +17,10 @@
   <![endif]-->  
   <link href="general.css" rel="stylesheet">
   <link href="functionSolver.css" rel = "stylesheet">
-	<script src="simplify.js"></script>
-	<script src="graph.js"></script>
+  <script src="simplify.js"></script>
+  <script src="graph.js"></script>
+  <script>
+  </script>
 </head>
 
 <body style = "padding-top:65px">
@@ -64,15 +66,26 @@
       <script src="js/bootstrap.min.js"></script>
 
     <div class = "inner">
-       <h1> Function Solver </h1>
+       <h1> Function Solver </h1>	
     </div>
 
+  <div class = "inner">
+    <input class = "bounds" type = 'text' id = 'domain'/>
+    <input class = "bounds" type = 'text' id = 'domainmax'/>
+    <input class = "bounds" type = 'text' id = 'range'/>
+    <input class = "bounds" type = 'text' id = 'rangemax'/>
+  </div>
 	<div class = "inner">
-		<input class = "inner" type = 'text' value = '2x^2' id = 'inputFunction'/>
+		<input class = "textinput" type = 'text' value = '2x^2' id = 'inputFunction'/>
 		<input type = 'button' value ='Graph' onClick = 'graph()'/>
-	</div>
+		<br/>
+		<br/>
+		<div id="equation"></div>
+	</div> 
   <br/>
-  <div id="equation"></div>
-</body>
+  <!-- Canvas to draw the functions -->
+  <div style="position: relative;" id = 'canvas'>
+  </div>
+</body> 
 
 </html>
