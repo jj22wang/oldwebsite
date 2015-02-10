@@ -1,6 +1,21 @@
-function calculate()
+function calculate(x, func)
 {
+	var sum = 0;
+	for(var i = 0; i<func.length; i++)
+	{
+		sum += func[i] * Math.pow(x, i);
+	}
+	return sum;
+}
 
+function derive(func)
+{
+	for(var i = 0; i<func.length-1; i++)
+	{
+		func[i] = func[i+1]*(i+1);
+	}
+	func.pop();	
+	return func;
 }
 
 function draw(ctx, xfrom, yfrom, xto, yto)
@@ -17,16 +32,64 @@ function draw(ctx, xfrom, yfrom, xto, yto, strokeColor)
 	ctx.beginPath();
 	ctx.moveTo(xfrom, yfrom);
 	ctx.lineTo(xto,yto);
-	ctx.strokeStyle= strokeColor;
+	ctx.strokeStyle = strokeColor;
 	ctx.stroke();	
 }
 
 function drawGrid(c)
 {
 	ctx = c.getContext('2d');
-	draw(ctx, c.width*.5, 0, c.width*.5, c.height, 'blue');
-	draw(ctx, 0, c.height*.5, c.width, c.height*.5, 'blue');
+	gridy = c.height*.5;
+	gridx = c.width*.5;
+	if(range >= 0  && rangeLow <= 0)
+	{
+		gridy = (range)/(range-rangeLow) * c.height;
+	}
+	if(domain >= 0  && domainLow <= 0)
+	{
+		gridx = (-domainLow)/(domain-domainLow) * c.width;
+	}
+	draw(ctx, gridx, 0, gridx, c.height, 'blue');
+	draw(ctx, 0, gridy, c.width, gridy, 'blue');
+	ctx.font = "10px Arial";
+	ctx.fillStyle = "blue";	
+	for(var i = 1; i < 20;i++)
+	{
+		ctx.fillText(Math.round(10*(range - i*(range-rangeLow)/20))/10, gridx + 5, i/20 * c.height - 4);
+		if(Math.abs(i*(domain-domainLow)/20 + domainLow, i/20 - gridx/c.width) < .1)
+			continue;	
+		ctx.fillText(Math.round(10*(i*(domain-domainLow)/20 + domainLow)/10), i/20 * c.width, gridy - 2);
+	}
 }
+
+function drawDeg(c, func, color)
+{
+	ctx = c.getContext('2d');
+	ctx.beginPath();
+	for(var i = 1; i < c.width; i++)
+	{
+		var y = calculate(i*(domain-domainLow)/c.width + domainLow, func);
+		y = (1-(y-domainLow)/(domain-domainLow)) * c.height;
+		ctx.lineTo(i, y);
+	}
+	ctx.strokeStyle = color;
+	ctx.stroke();
+}
+
+/*function drawDeg(c, func)
+{
+	ctx = c.getContext('2d');
+	ctx.beginPath();
+	for(var i = 1; i < c.width; i++)
+	{
+		var y = calculate(i*(domain-domainLow)/c.width + domainLow, func);
+		if(y>range || y<rangeLow)
+			continue;
+		y = (1-(y-domainLow)/(domain-domainLow)) * c.height;
+		ctx.lineTo(i, y);
+	}
+	ctx.stroke();
+}*/
 
 function polyDegree(p)
 {
@@ -116,6 +179,16 @@ function polyPrint(p)
     document.getElementById("equation").innerHTML= p;
 }
 
+function hide(val)
+{
+	if(layers[val].style.display!='none')
+		layers[val].style.display = 'none';
+	else
+	{
+		layers[val].style.display = 'block';
+	}
+}
+
 function graph()
 {
 	var func = document.getElementById('inputFunction').value;
@@ -126,7 +199,7 @@ function graph()
 	{
    		canvas.removeChild(canvas.firstChild);
 	}	
-	for(var i = 0; i<3; i++)
+	for(var i = 0; i<4; i++)
 	{
 		var layer = document.createElement('canvas');
 		layer.className = 'layers';
@@ -134,7 +207,30 @@ function graph()
 		layer.width = window.innerWidth*.7;
 		canvas.appendChild(layer);
 	}
-	var layers = document.getElementsByClassName("layers");
+	layers = document.getElementsByClassName("layers");
+	var x;
+	range = 10;
+	domain = 10;
+	domainLow = -10;
+	rangeLow = -10;
+	if(x = parseInt(document.getElementById('domain').value))
+		domainLow = x;
+	if(x = parseInt(document.getElementById('range').value))
+		rangeLow = x;
+	if(x = parseInt(document.getElementById('domainmax').value))
+		domain = x;
+	if(x = parseInt(document.getElementById('rangemax').value))
+		range = x;
 	drawGrid(layers[0]);
+	drawDeg(layers[1], simplifiedFunction, 'black');
+	drawDeg(layers[2], derive(simplifiedFunction), "blue");
+	drawDeg(layers[3], derive(simplifiedFunction), "red");
 	return;
 }
+
+range = 10;
+rangeLow = -10;
+domain = 10;
+domainLow = -10;
+gridx = 0;
+gridy = 0;
