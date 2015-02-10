@@ -58,7 +58,7 @@ function drawGrid(c)
 		ctx.fillText(Math.round(10*(range - i*(range-rangeLow)/20))/10, gridx + 5, i/20 * c.height - 4);
 		if(Math.abs(i*(domain-domainLow)/20 + domainLow, i/20 - gridx/c.width) < .1)
 			continue;	
-		ctx.fillText(Math.round(10*(i*(domain-domainLow)/20 + domainLow)/10), i/20 * c.width, gridy - 2);
+		ctx.fillText(Math.round(10*(i*(domain-domainLow)/20 + domainLow))/10, i/20 * c.width, gridy - 2);
 	}
 }
 
