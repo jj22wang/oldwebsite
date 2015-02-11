@@ -69,7 +69,7 @@ function drawDeg(c, func, color)
 	for(var i = 1; i < c.width; i++)
 	{
 		var y = calculate(i*(domain-domainLow)/c.width + domainLow, func);
-		y = (1-(y-domainLow)/(domain-domainLow)) * c.height;
+		y = (1-(y-rangeLow)/(range-rangeLow)) * c.height;
 		ctx.lineTo(i, y);
 	}
 	ctx.strokeStyle = color;
@@ -208,19 +208,19 @@ function graph()
 		canvas.appendChild(layer);
 	}
 	layers = document.getElementsByClassName("layers");
-	var x;
-	range = 10;
-	domain = 10;
-	domainLow = -10;
-	rangeLow = -10;
-	if(x = parseInt(document.getElementById('domain').value))
-		domainLow = x;
-	if(x = parseInt(document.getElementById('range').value))
-		rangeLow = x;
-	if(x = parseInt(document.getElementById('domainmax').value))
-		domain = x;
-	if(x = parseInt(document.getElementById('rangemax').value))
-		range = x;
+	domainLow = parseInt(document.getElementById('domain').value) || -10;
+	rangeLow = parseInt(document.getElementById('range').value) || -10;
+	domain = parseInt(document.getElementById('domainmax').value) || 10;
+	range = parseInt(document.getElementById('rangemax').value) || 10;
+	if(parseInt(document.getElementById('domain').value) == 0)
+		domainLow = 0;
+	if(parseInt(document.getElementById('range').value) == 0)
+		rangeLow = 0;
+	if(parseInt(document.getElementById('domainmax').value) == 0)
+		domain = 0;
+	if(parseInt(document.getElementById('rangemax').value) == 0)
+		range = 0;
+
 	drawGrid(layers[0]);
 	drawDeg(layers[1], simplifiedFunction, 'black');
 	drawDeg(layers[2], derive(simplifiedFunction), "blue");
