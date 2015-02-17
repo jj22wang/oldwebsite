@@ -66,18 +66,13 @@ function drawDeg(c, func, color)
 {
 	ctx = c.getContext('2d');
 	ctx.beginPath();
-	for(var i = 1; i < c.width; i++)
+	ctx.strokeStyle = color;
+	for(var i = 0; i < c.width; i++)
 	{
 		var y = calculate(i*(domain-domainLow)/c.width + domainLow, func);
-		y = (1-(y-rangeLow)/(range-rangeLow)) * c.height;
-		if(y>0)
-		{
-			console.log(i);
-			console.log(y);
-		}
+		y = ((range-rangeLow-(y-rangeLow))*c.height)/(range-rangeLow);
 		ctx.lineTo(i, y);
 	}
-	ctx.strokeStyle = color;
 	ctx.stroke(); 
 }
 
@@ -228,7 +223,7 @@ function graph()
 
 	drawGrid(layers[0]);
 	drawDeg(layers[1], simplifiedFunction, 'black', 4);
-	drawDeg(layers[2], derive(simplifiedFunction), "blue");
+	drawDeg(layers[2], derive(simplifiedFunction), "orange");
 	drawDeg(layers[3], derive(simplifiedFunction), "red");
 	return;
 }
