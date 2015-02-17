@@ -228,8 +228,8 @@ function graph()
 
 	drawGrid(layers[0]);
 	drawDeg(layers[1], simplifiedFunction, 'black', 4);
-	//drawDeg(layers[2], derive(simplifiedFunction), "blue");
-	//drawDeg(layers[3], derive(simplifiedFunction), "red");
+	drawDeg(layers[2], derive(simplifiedFunction), "blue");
+	drawDeg(layers[3], derive(simplifiedFunction), "red");
 	return;
 }
 

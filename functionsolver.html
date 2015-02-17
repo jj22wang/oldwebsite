@@ -68,13 +68,18 @@
     <div class = "inner">
        <h1> Function Solver </h1>	
     </div>
-
-  <div class = "inner">
-    <input class = "bounds" type = 'text' id = 'domain'/>
-    <input class = "bounds" type = 'text' id = 'domainmax'/>
-    <input class = "bounds" type = 'text' id = 'range'/>
-    <input class = "bounds" type = 'text' id = 'rangemax'/>
-  </div>
+  <table align="center"> 
+  <tr>
+    <td>Domain: </td>
+    <td><input class = "bounds" type = 'text' value="-10" id = 'domain'/></td>
+    <td><input class = "bounds" type = 'text' value='-10' id = 'range'/></td>
+  </tr>
+  <tr>
+    <td>Range:</td>
+    <td><input class = "bounds" type = 'text' value='10' id = 'domainmax'/></td>
+    <td><input class = "bounds" type = 'text' value = '10' id = 'rangemax'/></td>
+  </tr>
+  </table>
 	<div class = "inner">
 		<input class = "textinput" type = 'text' value = 'x^4 - 2x^2 - 5x + 2' id = 'inputFunction'/>
 		<input type = 'button' value ='Graph' onClick = 'graph()'/>
@@ -82,9 +87,9 @@
 		<br/><div id="equation"></div>
 	</div> 
   <div class = 'inner'>
-    <input type = "button" onClick = 'hide(1)'/>
-    <input type = "button" onClick = 'hide(2)'/>
-    <input type = "button" onClick = 'hide(3)'/>
+    <input type = "button" value = ' f(x) ' onClick = 'hide(1)'/>
+    <input type = "button" value = "f'(x) "onClick = 'hide(2)'/>
+    <input type = "button" value = "f''(x)" onClick = 'hide(3)'/>
   </div>
   <br/>
   <!-- Canvas to draw the functions -->
