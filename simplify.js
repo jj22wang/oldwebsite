@@ -100,6 +100,29 @@ function interpretOperator(thisGroup, nextGroup, command)
 		{
 			return interpretOperator(thisGroup, nextGroup.substring(1), nextGroup[0]);
 		}
+		else if(command == '(')
+		{
+			var i = 0
+			var bracketDifference = 0;
+			while(i<nextGroup.length && nextGroup[i]!=')' || bracketDifference > 0)
+				{
+					if(nextGroup[i] == '(')
+						bracketDifference++;
+					if(nextGroup[i] == ')')
+						bracketDifference--;
+					i++;
+				}
+			if(i==nextGroup.length)
+			{
+				return multiply(thisGroup, interpretGroup(nextGroup));
+			}
+			else
+			{
+				var s = multiply(thisGroup, interpretGroup(nextGroup.substring(0, i)));
+				var s = interpretOperator(s, nextGroup.substring(i+1), nextGroup[i]);
+				return s;
+			}
+		}
 		else
 		{
 			return interpretGroup(nextGroup);

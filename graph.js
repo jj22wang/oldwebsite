@@ -70,10 +70,15 @@ function drawDeg(c, func, color)
 	{
 		var y = calculate(i*(domain-domainLow)/c.width + domainLow, func);
 		y = (1-(y-rangeLow)/(range-rangeLow)) * c.height;
+		if(y>0)
+		{
+			console.log(i);
+			console.log(y);
+		}
 		ctx.lineTo(i, y);
 	}
 	ctx.strokeStyle = color;
-	ctx.stroke();
+	ctx.stroke(); 
 }
 
 /*function drawDeg(c, func)
@@ -222,9 +227,9 @@ function graph()
 		range = 0;
 
 	drawGrid(layers[0]);
-	drawDeg(layers[1], simplifiedFunction, 'black');
-	drawDeg(layers[2], derive(simplifiedFunction), "blue");
-	drawDeg(layers[3], derive(simplifiedFunction), "red");
+	drawDeg(layers[1], simplifiedFunction, 'black', 4);
+	//drawDeg(layers[2], derive(simplifiedFunction), "blue");
+	//drawDeg(layers[3], derive(simplifiedFunction), "red");
 	return;
 }
 
