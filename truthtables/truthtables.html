@@ -1,0 +1,48 @@
+<html>
+<head>
+	<link rel="stylesheet" href="style.css" media="screen" type="text/css" />
+	<!-- Draws truth table of appropriate size for input -->
+	<script src="addField.js"></script>
+	<!-- Tools used to reduce the sum of products to the cheapest possible configuration -->
+	<script src="reductionTools.js"></script>
+	<!-- Calculates the Sum of Products and displays it -->
+	<script src="calculateSumOfProducts.js"></script>
+</head>
+<body>
+<h1 id="header">Un-Truthful</h1>
+<h2>Enter the truth table, find the least cost boolean expression</h2>
+<div># of Variables:</div>
+<select id="val" name="val" value="">
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+</select>
+<br/><br/>
+<input type="button" value="Generate Table" id="filldetails" onclick="addFields()"/>
+<br/>
+<br/>
+<div id="spacing"></div>
+<div id="container"></div>
+<div id="table"></div>
+<br/>
+<div>
+	<input type='button' value='Calculate Sum of Products' id ='calculate' onclick='calculateSOP()' style ='display:none'/>
+</div>
+<div id="expression"></div>
+
+<div id="credits">Made by Samuel Wu and Jack Wang. Special thanks to Dave Pagurek van Mossel</div>
+<div id = "test"></div>
+<div id= "test2"></div>
+<div id= "test3"></div>
+<div id = "test4"></div>
+<div id= "test5"></div>
+<div id= "test6"></div>
+<div id= "test7"></div>
+<div id= "test8"></div>
+<br/>
+
+</body>
+</html>
